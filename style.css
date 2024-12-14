@@ -10,7 +10,7 @@ div {
     align-items: center;
     border-radius: 20px;
     flex-direction: column;
-    border: 3px solid black;
+    border: 2px solid black;
 }
 
 #screen {
@@ -47,6 +47,7 @@ button {
     border-radius: 10px;
     font-size: 24px;
     font-family: "Courier New", Courier, monospace;
+    border: 1px solid black;
 
 }
 h2 {
