@@ -7,7 +7,7 @@ function createButton(buttonLabel, className, callback) {
     return newButton
 }
 function clear(){
-    displayNum.textContent = "";
+    displayNum.textContent = "0";
     displayExpression.textContent = "";
     num1 = "";
     num2 = "";
@@ -17,13 +17,26 @@ function del(){
 }
 
 function appendScreen(text){
-    displayNum.textContent = displayNum.textContent += text;
+    if(displayNum.textContent === "0") {
+        if (text !== "0" ){
+            displayNum.textContent = text;
+        }
+    } else {
+        displayNum.textContent += text;
+    }
+
+}
+
+function decimal(){
+    if(!displayNum.textContent.includes(".")){
+        appendScreen(".")
+    }
 }
 
 add = (num1, num2) => +num1 + +num2;
-sub = (num1, num2) => +num1 - num2;
+sub = (num1, num2) => +num1 - +num2;
 mul = (num1, num2) => +num1 * +num2;
-div = (num1, num2) => +num1 / num2;
+div = (num1, num2) => +num1 / +num2;
 
 function equals(){
     if (displayExpression.textContent.includes('=')){
@@ -43,7 +56,7 @@ function equals(){
             solution = mul(num1,num2);
             break;
         case "÷":
-            solution = mul(num1,num2);
+            solution = div(num1,num2);
             break;
     }
     displayNum.textContent = solution;
@@ -52,11 +65,10 @@ function equals(){
 
 function opFunction(e){
     operation = e.target.textContent;
-    if (!displayExpression.textContent.includes(operation)){
-        num1 = displayNum.textContent;
-        displayNum.textContent = "";
-        displayExpression.textContent = +num1 + ' ' + operation + ' ';
-    }
+    displayExpression.textContent.includes(operation)
+    num1 = displayNum.textContent;
+    displayNum.textContent = "";
+    displayExpression.textContent = +num1 + ' ' + operation + ' ';
 
 }
 
@@ -72,7 +84,7 @@ buttonsBox.appendChild(createButton("÷", "square", opFunction));
 for(let i = 1; i < 10; i++){
     buttonsBox.appendChild(createButton(i,"medium", (e) => appendScreen(e.target.textContent)));
 }
-buttonsBox.appendChild(createButton(".", "medium", (e) => appendScreen(".")));
+buttonsBox.appendChild(createButton(".", "medium", decimal));
 buttonsBox.appendChild(createButton(0,"medium", (e) => appendScreen("0")));
 buttonsBox.appendChild(createButton("Delete", "medium", del));
 
