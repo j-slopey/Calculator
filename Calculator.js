@@ -6,6 +6,7 @@ function createButton(buttonLabel, className, callback) {
     newButton.addEventListener("click", callback);
     return newButton
 }
+
 function clear(){
     displayNum.textContent = "0";
     displayExpression.textContent = "";
@@ -13,6 +14,7 @@ function clear(){
     num2 = "";
     operation = "";
 }
+
 function del(){
     if (displayExpression.textContent.includes("=")){
         clear();
@@ -94,6 +96,8 @@ function opFunction(e){
             displayNum.textContent = "";
             displayExpression.textContent = +num1 + " " + nextOperation + " ";
         }
+    } else{
+        displayExpression.textContent = +num1 + " " + nextOperation + " ";
     }
     operation = nextOperation;
 }
