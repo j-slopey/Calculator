@@ -31,7 +31,7 @@ function appendScreen(text){
 
         }
     }else {
-        if (displayNum.textContent === "0" && text !== "0") {
+        if (displayNum.textContent === "0") {
             displayNum.textContent = text;
         } else {
             displayNum.textContent += text;
