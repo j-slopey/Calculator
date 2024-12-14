@@ -46,11 +46,16 @@ button {
     min-height: 60px;
     border-radius: 10px;
     font-size: 24px;
+    font-family: "Courier New", Courier, monospace;
 
 }
 h2 {
     text-align: center ;
     margin: 8px;
+    font-family: "Andale Mono", monospace;
+}
+p {
+    font-family: "Andale Mono", monospace;
 }
 .medium {
     width: 120px;
