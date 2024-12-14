@@ -18,6 +18,8 @@ div {
     background-color: white;
     border-radius: 10px;
     margin: 18px;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 #buttons {
@@ -31,13 +33,17 @@ div {
     padding: 8px;
 }
 
+
 button {
     margin: 0;
     padding: 0;
     height: 90px;
     border-radius: 10px;
 }
-
+h2 {
+    text-align: center ;
+    margin: 8px;
+}
 .wide {
     width: 90px;
 }
