@@ -6,11 +6,14 @@ function createButton(buttonLabel, className, callback) {
     newButton.addEventListener("click", callback);
     return newButton
 }
-function clear (){
+function clear(){
     displayNum.textContent = "";
     displayExpression.textContent = "";
     num1 = "";
     num2 = "";
+}
+function del(){
+    displayNum.textContent = displayNum.textContent.substring(0,displayNum.textContent.length - 1);
 }
 
 function appendScreen(text){
@@ -23,7 +26,12 @@ mul = (num1, num2) => +num1 * +num2;
 div = (num1, num2) => +num1 / num2;
 
 function equals(){
-    num2 = displayNum.textContent;
+    if (displayExpression.textContent.includes('=')){
+        num1 = displayNum.textContent;
+        opFunction({target: {textContent: operation}});
+    } else {
+        num2 = displayNum.textContent;
+    }
     switch (operation){
         case "+":
             solution = add(num1,num2);
@@ -43,25 +51,31 @@ function equals(){
 }
 
 function opFunction(e){
-    num1 = displayNum.textContent;
     operation = e.target.textContent;
-    displayNum.textContent = "";
-    displayExpression.textContent = +num1 + ' ' + operation + ' ';
+    if (!displayExpression.textContent.includes(operation)){
+        num1 = displayNum.textContent;
+        displayNum.textContent = "";
+        displayExpression.textContent = +num1 + ' ' + operation + ' ';
+    }
+
 }
 
 const buttonsBox = document.querySelector("#buttons");
 const displayNum = document.querySelector("#displayNum")
 const displayExpression = document.querySelector("#displayExpression")
 let num1,num2,operation,solution;
-let num1Filled = false
-buttonsBox.appendChild(createButton("Clear", "square", clear));
-buttonsBox.appendChild(createButton("=", "square", equals));
-for(let i = 0; i < 10; i++){
-    buttonsBox.appendChild(createButton(i,"square", (e) => appendScreen(e.target.textContent)));
-}
 buttonsBox.appendChild(createButton("+", "square", opFunction));
 buttonsBox.appendChild(createButton("-", "square", opFunction));
 buttonsBox.appendChild(createButton("x", "square", opFunction));
 buttonsBox.appendChild(createButton("÷", "square", opFunction));
 
-buttonsBox.appendChild(createButton(".", "square", (e) => appendScreen(".")));
+for(let i = 1; i < 10; i++){
+    buttonsBox.appendChild(createButton(i,"medium", (e) => appendScreen(e.target.textContent)));
+}
+buttonsBox.appendChild(createButton(".", "medium", (e) => appendScreen(".")));
+buttonsBox.appendChild(createButton(0,"medium", (e) => appendScreen("0")));
+buttonsBox.appendChild(createButton("Delete", "medium", del));
+
+buttonsBox.appendChild(createButton("Clear", "wide", clear));
+buttonsBox.appendChild(createButton("=", "wide", equals));
+

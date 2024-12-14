@@ -41,17 +41,21 @@ div {
 button {
     margin: 0;
     padding: 0;
-    height: 60px;
+    min-height: 60px;
     border-radius: 10px;
+    font-size: 24px;
 }
 h2 {
     text-align: center ;
     margin: 8px;
 }
-.wide {
-    width: 90px;
+.medium {
+    width: 120px;
 }
-
+.wide {
+    width: 180px;
+}
 .square {
     width: 90px;
 }
+
