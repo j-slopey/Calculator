@@ -11,4 +11,8 @@ for(let i = 0; i < 10; i++){
     buttonsBox.appendChild(createButton(i,"square"));
 }
 
+buttonsBox.appendChild(createButton("+", "square"));
+buttonsBox.appendChild(createButton("-", "square"));
+buttonsBox.appendChild(createButton("x", "square"));
+buttonsBox.appendChild(createButton("÷", "square"));
 
